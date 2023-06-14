@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int is_valid_string(char* str) {
+    int len = strlen(str);
+    int i = 0;
+    while (i < len) {
+        if (str[i] == '0') {
+            i++;
+            while (str[i] == '0') {
+                i++;
+            }
+            if (str[i] == '1') {
+                i++;
+                continue;
+            } else {
+                return 0;
+            }
+        } else if (str[i] == '1') {
+            i++;
+            while (str[i] == '1') {
+                i++;
+            }
+            if (str[i] == '0') {
+                i++;
+                continue;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    char str[100];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    if (is_valid_string(str)) {
+        printf("Valid string.\n");
+    } else {
+        printf("Invalid string.\n");
+    }
+    return 0;
+}
